@@ -1,18 +1,12 @@
 export function getPercent (value, total) {
-    // Verificar que value y total sean numéricos
     if (typeof value !== 'number' || typeof total !== 'number') {
         throw new Error('Both value and total must be numbers');
     }
-    
-    // Verificar que total no sea cero para evitar división por cero
     if (total === 0) {
         throw new Error('Total must not be zero');
     }
-    
     const percent = (value/total) * 100
     const percentFixed = percent.toFixed(2)
-    
-    // Verificar que el retorno sea numérico
     if (isNaN(percentFixed)) {
         throw new Error('Result is not a number');
     }
