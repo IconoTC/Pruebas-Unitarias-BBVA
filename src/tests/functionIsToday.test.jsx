@@ -47,7 +47,7 @@ describe(' Test fucntion is today', () => {
     }).toThrowError();
    })
 
-   test('throw an error for an undefined', () => {
+   test('throw an error for a number', () => {
     expect(()=> {
       isToday(54) 
       }).toThrow('Invalid date')
