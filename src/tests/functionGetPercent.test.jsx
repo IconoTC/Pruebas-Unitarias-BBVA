@@ -29,8 +29,4 @@ describe("Test funcion percent", () => {
     expect(() => getPercent(null, null)).toThrow('Both value and total must be numbers');
     expect(() => getPercent(5, null)).toThrowError();
   })
-
-
-
-
 })
