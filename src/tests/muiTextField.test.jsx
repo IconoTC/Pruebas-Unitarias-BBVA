@@ -47,4 +47,22 @@ describe("Test TextFieldMui", () => {
     // Verifica que el TextField con el marcador de posición sea visible en el documento
     expect(textField).toBeInTheDocument();
   });
+
+    // Prueba: renders TextField with correct value
+    test('renders TextField with correct value', () => {
+      render(<TextField value="John Doe" onChange={() => {}} />);
+      // Busca el TextField por su valor mostrado
+      const textField = screen.getByDisplayValue(/john doe/i);
+      // Verifica que el TextField con el valor mostrado sea visible en el documento
+      expect(textField).toBeInTheDocument();
+      expect(textField).toHaveValue('John Doe');
+    });
+
+  // Prueba: renders TextField as disabled
+  test('renders TextField as disabled', () => {
+    render(<TextField label="Username" disabled />);
+    // Busca el TextField por su etiqueta y verifica que esté deshabilitado
+    const textField = screen.getByLabelText(/username/i);
+    expect(textField).toBeDisabled();
+  });
 });
