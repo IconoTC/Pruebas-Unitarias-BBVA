@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest'; // Importa las funciones de vitest para describir pruebas, ejecutar pruebas y realizar afirmaciones
+import { describe, test, expect, expectTypeOf } from 'vitest'; // Importa las funciones de vitest para describir pruebas, ejecutar pruebas y realizar afirmaciones
 import { getProducts, getProduct } from '../service/Api'; // Importa las funciones de API para obtener productos desde un servicio externo
 import { productsData, productData } from '../constant'; // Importa datos constantes de productos y un producto específico para comparación
 
@@ -37,5 +37,9 @@ describe('API functions', () => {
           expect(result.price).toEqual(22.3);
           const title = result.title
           expect(title).toEqual("Mens Casual Premium Slim Fit T-Shirts ");
-  });
+          expect(title).toContain("Mens Casual Premium");
+          expect(typeof title).toEqual('string');
+          expectTypeOf(result).toHaveProperty("title").toBeNumber()
+          // Esta última aserción {♣expectTypeOf} no está funcionando correctamente, no verifica que la pripiedad title sea un string, os lo dejo aquí por si quereis probar con esta aserción
+    });
   });
