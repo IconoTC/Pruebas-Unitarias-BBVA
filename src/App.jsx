@@ -1,5 +1,5 @@
-import { Button } from "@mui/material"
-// import { TextField } from "@mui/material"
+// import { Button } from "@mui/material"
+import { TextField } from "@mui/material"
 // import { Select } from "./components/Select";
 // import { Home } from "./pages/Home";
 // import ProductList from "./pages/ProductList";
@@ -19,8 +19,8 @@ const App = () => {
   // ];
   return (
     <div className="full-height flex-center">
-      <Button disabled>Click me</Button>
-      {/* <TextField label="Username" /> */}
+      {/* <Button disabled>Click me</Button> */}
+      <TextField placeholder="Enter your username" />
       {/* <Select options={mockedOptions} value={'mocked-option-1'}/> */}
       {/* <Home/> */}
       {/* <ProductList /> */}
