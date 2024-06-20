@@ -74,6 +74,27 @@ describe('Test Home component', () => {
     // Verificar que los valores de los inputs se actualizan
     expect(emailInput.value).toBe(username);
     expect(passwordInput.value).toBe(password);
+    fireEvent.change(emailInput, { target: { value: "" } });
+    fireEvent.change(passwordInput, { target: { value: "" } });
+    expect(emailInput.value).toBe('');
+    expect(passwordInput.value).toBe('');
   });
 
+  test('handles form submission', () => {
+    render(<Home />);
+    const username = 'test@example.com'
+    const password = 'password123'
+    // Obtener los elementos del formulario
+    const emailInput = screen.getByLabelText(/email address/i);
+    const passwordInput = screen.getByLabelText(/password input/i);
+    const submitButton = screen.getByRole('button', { name: /sign in/i });
+    // Simular entrada de usuario
+    fireEvent.change(emailInput, { target: { value: username } });
+    fireEvent.change(passwordInput, { target: { value: password } });
+    // Simular envío de formulario
+    fireEvent.click(submitButton);
+    // Verificar que se registró la entrada del usuario en el formulario
+    expect(console.log).toHaveBeenCalledWith({email: username, password: password});
+    expect(window.alert).toHaveBeenCalledWith('Se ha enviado el formulario');
+});
 });
