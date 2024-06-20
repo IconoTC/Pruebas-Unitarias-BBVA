@@ -65,5 +65,22 @@ describe('ProductList', () => {
           // Verifica que el elemento del producto esté presente en la pantalla
           expect(screen.getByLabelText('Mens Casual Premium Slim Fit T-Shirts')).toBeInTheDocument();
       });
-  });
+    });
+
+        // Test mejorado para verificar que se muestra un producto individual al hacer clic en un botón
+        test('Better practice should fetch and display a single product on button click', async () => {
+          render(<ProductList />);
+          // Verifica que el producto no esté presente antes de hacer clic en el botón
+          expect(screen.queryByLabelText('Mens Casual Premium Slim Fit T-Shirts')).not.toBeInTheDocument();
+  
+          fireEvent.click(screen.getByText('Click me')); // Simula el clic en el botón
+  
+          // Espera a que se muestre el producto
+          await waitFor(() => {
+              // Verifica que console.log se haya llamado con los datos del producto esperado (en este caso, productData)
+              expect(console.log).toHaveBeenCalledWith(productData);
+              // Verifica que el elemento del producto esté presente en la pantalla
+              expect(screen.getByLabelText('Mens Casual Premium Slim Fit T-Shirts')).toBeInTheDocument();
+          });
+      });
   });
