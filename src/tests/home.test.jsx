@@ -92,9 +92,11 @@ describe('Test Home component', () => {
     fireEvent.change(emailInput, { target: { value: username } });
     fireEvent.change(passwordInput, { target: { value: password } });
     // Simular envío de formulario
+    expect(window.alert).toHaveBeenCalledTimes(0);
     fireEvent.click(submitButton);
     // Verificar que se registró la entrada del usuario en el formulario
     expect(console.log).toHaveBeenCalledWith({email: username, password: password});
     expect(window.alert).toHaveBeenCalledWith('Se ha enviado el formulario');
+    expect(window.alert).toHaveBeenCalledTimes(1);
 });
 });
