@@ -1,5 +1,5 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
+import { describe, test, expect, vi, beforeAll, afterAll } from 'vitest';
 import '@testing-library/jest-dom';
 import ProductList from '../pages/ProductList';
 import { productsData, productData } from '../constant';
@@ -16,7 +16,7 @@ describe('ProductList', () => {
     });
 
     // Test para renderizar la lista de productos
-    it('renders product list', async () => {
+    test('renders product list', async () => {
         render(<ProductList />);
         // Espera a que los elementos se rendericen
         await waitFor(() => {
@@ -27,4 +27,17 @@ describe('ProductList', () => {
             expect(items[1]).toHaveTextContent('Mens Casual Premium Slim Fit T-Shirts');
         });
     });
+
+        // Test para verificar que cada elemento de la lista de productos se renderiza correctamente
+        test('for each - renders product list', async () => {
+          render(<ProductList />);
+          await waitFor(() => {
+              const items = screen.getAllByRole('listitem');
+              expect(items).toHaveLength(20); // Verifica que haya 20 elementos en la lista
+              // Verifica que el título de cada elemento coincida con el título correspondiente en productsData
+              productsData.forEach((product, index) => {
+                  expect(items[index].textContent).toContain(product.title); // Verifica el título del producto
+              });
+          });
+      });
   });
