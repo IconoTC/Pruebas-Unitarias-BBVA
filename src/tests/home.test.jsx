@@ -41,4 +41,21 @@ describe('Test Home component', () => {
       // Verificar que el checkbox está desmarcado
       expect(rememberMeCheckbox.checked).toBe(false);
   });
-  });
+
+  test('toggles show password checkbox', () => {
+    render(<Home />);
+    // Obtener el checkbox de mostrar contraseña y el input de contraseña
+    const togglePasswordButton = screen.getByLabelText(/toggle password visibility/i);
+    const passwordInput = screen.getByLabelText(/password input/i);
+    // Verificar que el input de contraseña está inicialmente oculto
+    expect(passwordInput.type).toBe('password');
+    // Simular el clic en el botón de mostrar contraseña
+    fireEvent.click(togglePasswordButton);
+    // Verificar que el input de contraseña muestra el texto
+    expect(passwordInput.type).toBe('text');
+    // Simular el clic nuevamente en el botón de mostrar contraseña para ocultarla
+    fireEvent.click(togglePasswordButton);
+    // Verificar que el input de contraseña vuelve a estar oculto
+    expect(passwordInput.type).toBe('password');
+});
+});
