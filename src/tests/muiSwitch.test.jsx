@@ -33,4 +33,9 @@ describe("Test SwitchMui", () => {
       expect(switchElement).not.toBeChecked(); // Verifica que el Switch no está marcado
     });
   
+    test('renders Switch as disabled', () => {
+      render(<Switch disabled />); // Renderiza el Switch deshabilitado
+      const switchElement = screen.getByRole('checkbox'); // Busca el elemento Switch por su rol de checkbox
+      expect(switchElement).toBeDisabled(); // Verifica que el Switch está deshabilitado
+    });
 });
