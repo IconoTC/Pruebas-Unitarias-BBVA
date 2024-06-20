@@ -32,8 +32,19 @@ describe("Test TextFieldMui", () => {
       };
       render(<TestComponent />); // Renderiza el componente TestComponent
       const textField = screen.getByLabelText(/username/i); // Busca el TextField por su etiqueta
+      expect(textField).toBeInTheDocument();
+      expect(textField).toHaveValue('');
       fireEvent.change(textField, { target: { value: 'John Doe' } }); // Simula un cambio en el valor del TextField
       // Verifica que el TextField tenga el valor correcto después del cambio
       expect(textField).toHaveValue('John Doe');
     });
+
+      // Prueba: renders TextField with correct placeholder
+  test('renders TextField with correct placeholder', () => {
+    render(<TextField placeholder="Enter your username" />);
+    // Busca el TextField por su marcador de posición
+    const textField = screen.getByPlaceholderText(/enter your username/i);
+    // Verifica que el TextField con el marcador de posición sea visible en el documento
+    expect(textField).toBeInTheDocument();
+  });
 });
