@@ -31,11 +31,30 @@ describe("Test SwitchMui", () => {
       render(<Switch checked={false} />); // Renderiza el Switch sin marcar
       const switchElement = screen.getByRole('checkbox'); // Busca el elemento Switch por su rol de checkbox
       expect(switchElement).not.toBeChecked(); // Verifica que el Switch no está marcado
+      expect(switchElement).not.toBeDisabled();
     });
   
     test('renders Switch as disabled', () => {
       render(<Switch disabled />); // Renderiza el Switch deshabilitado
       const switchElement = screen.getByRole('checkbox'); // Busca el elemento Switch por su rol de checkbox
       expect(switchElement).toBeDisabled(); // Verifica que el Switch está deshabilitado
+    });
+
+    test('updates state when value changes', () => {
+      // Componente funcional que maneja el estado del Switch
+      const TestComponent = () => {
+        const [checked, setChecked] = useState(false); // Estado local 'checked' inicializado como false
+        return (
+          <Switch
+            checked={checked}
+            onChange={(e) => setChecked(e.target.checked)} // Actualiza el estado 'checked' con el evento onChange
+          />
+        );
+      };
+      render(<TestComponent />); // Renderiza el componente TestComponent
+      const switchElement = screen.getByRole('checkbox'); // Busca el elemento Switch por su rol de checkbox
+      expect(switchElement).not.toBeChecked(); // Verifica que el Switch no está marcado inicialmente
+      fireEvent.click(switchElement); // Simula un clic en el Switch
+      expect(switchElement).toBeChecked(); // Verifica que el Switch está marcado después del clic
     });
 });
