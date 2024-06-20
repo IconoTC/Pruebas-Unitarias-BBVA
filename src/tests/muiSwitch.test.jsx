@@ -26,5 +26,11 @@ describe("Test SwitchMui", () => {
       const switchElement = screen.getByRole('checkbox'); // Busca el elemento Switch por su rol de checkbox
       expect(switchElement).toBeChecked(); // Verifica que el Switch está marcado
     });
+
+    test('renders Switch with unchecked state', () => {
+      render(<Switch checked={false} />); // Renderiza el Switch sin marcar
+      const switchElement = screen.getByRole('checkbox'); // Busca el elemento Switch por su rol de checkbox
+      expect(switchElement).not.toBeChecked(); // Verifica que el Switch no está marcado
+    });
   
 });
