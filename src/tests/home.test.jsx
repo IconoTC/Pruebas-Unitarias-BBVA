@@ -98,5 +98,5 @@ describe('Test Home component', () => {
     expect(console.log).toHaveBeenCalledWith({email: username, password: password});
     expect(window.alert).toHaveBeenCalledWith('Se ha enviado el formulario');
     expect(window.alert).toHaveBeenCalledTimes(1);
-});
+  });
 });
