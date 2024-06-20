@@ -57,5 +57,23 @@ describe('Test Home component', () => {
     fireEvent.click(togglePasswordButton);
     // Verificar que el input de contraseña vuelve a estar oculto
     expect(passwordInput.type).toBe('password');
-});
+  });
+
+  test('updates input values', () => {
+    render(<Home />);
+    const username = 'newemail@example.com'
+    const password = 'newpassword'
+    // Obtener los elementos del formulario
+    const emailInput = screen.getByLabelText(/email address/i);
+    const passwordInput = screen.getByLabelText(/password input/i);
+    expect(emailInput.value).toBe('');
+    expect(passwordInput.value).toBe('');
+    // Simular entrada de usuario
+    fireEvent.change(emailInput, { target: { value: username } });
+    fireEvent.change(passwordInput, { target: { value: password } });
+    // Verificar que los valores de los inputs se actualizan
+    expect(emailInput.value).toBe(username);
+    expect(passwordInput.value).toBe(password);
+  });
+
 });
