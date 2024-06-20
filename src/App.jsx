@@ -2,8 +2,8 @@
 // import { TextField } from "@mui/material"
 // import { Switch } from "@mui/material"
 // import { Select } from "./components/Select";
-// import { Home } from "./pages/Home";
-import ProductList from "./pages/ProductList";
+import { Home } from "./pages/Home";
+// import ProductList from "./pages/ProductList";
 
 const App = () => {
   // const mockedOptions = [
@@ -24,8 +24,8 @@ const App = () => {
       {/* <TextField placeholder="Enter your username" /> */}
       {/* <Switch checked={true} /> */}
       {/* <Select options={mockedOptions} value={'mocked-option-1'}/> */}
-      {/* <Home/> */}
-      <ProductList />
+      <Home/>
+      {/* <ProductList /> */}
     </div>
   )
 }
