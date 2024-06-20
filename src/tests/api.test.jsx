@@ -35,11 +35,12 @@ describe('API functions', () => {
             }
           }) 
           expect(result.price).toEqual(22.3);
+          expect(typeof result.price).toEqual('number');
           const title = result.title
           expect(title).toEqual("Mens Casual Premium Slim Fit T-Shirts ");
           expect(title).toContain("Mens Casual Premium");
           expect(typeof title).toEqual('string');
-          expectTypeOf(result).toHaveProperty("title").toBeNumber()
+          expectTypeOf(result).toHaveProperty("title").toBeNumber();
           // Esta última aserción {♣expectTypeOf} no está funcionando correctamente, no verifica que la pripiedad title sea un string, os lo dejo aquí por si quereis probar con esta aserción
     });
   });
