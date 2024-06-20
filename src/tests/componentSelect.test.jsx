@@ -29,5 +29,29 @@ describe("Test Select component", () => {
     const select = screen.getByRole("combobox"); // Obtiene el elemento select
     expect(select).toBeInTheDocument(); // Asegura que el elemento select esté en el documento
     expect(screen.getByText('Cat').selected).toBe(true); // Asegura que la opción 'Cat' esté seleccionada
+    expect(screen.getByText('Dog').selected).toBe(false);
+  });
+
+  test("should update selected value on change", async () => {
+    let value = 'cat';
+    render(<Select options={animals} value={value}/>); // Renderiza el componente Select con un valor predeterminado 'cat'
+    const select = screen.getByRole("combobox"); // Obtiene el elemento select
+    expect(select).toBeInTheDocument(); // Asegura que el elemento select esté en el documento
+    expect(screen.getByText('Cat').selected).toBe(true); // Asegura que la opción 'Cat' esté seleccionada inicialmente
+    
+    // Simula el cambio de selección a 'dog'
+    fireEvent.change(select, { target: { value: 'dog' } });
+    expect(screen.getByText('Dog').selected).toBe(true); // Asegura que la opción 'Dog' esté seleccionada después del cambio
+    expect(screen.getByText('Cat').selected).toBe(false); // Asegura que la opción 'Cat' ya no esté seleccionada
+
+    // Simula el cambio de selección de nuevo a 'cat'
+    fireEvent.change(select, { target: { value: 'cat' } });
+    expect(screen.getByText('Dog').selected).toBe(false); // Asegura que la opción 'Dog' ya no esté seleccionada
+    expect(screen.getByText('Cat').selected).toBe(true); // Asegura que la opción 'Cat' esté seleccionada nuevamente
+
+    // Simula el cambio de selección a 'penguin'
+    fireEvent.change(select, { target: { value: 'penguin' } });
+    expect(screen.getByRole("option", { name: "Penguin" }).selected).toBe(true); // Asegura que la opción 'Penguin' esté seleccionada
+    expect(screen.getByText('Cat').selected).toBe(false); // Asegura que la opción 'Cat' ya no esté seleccionada
   });
 });
