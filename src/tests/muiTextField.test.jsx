@@ -65,4 +65,16 @@ describe("Test TextFieldMui", () => {
     const textField = screen.getByLabelText(/username/i);
     expect(textField).toBeDisabled();
   });
+
+    // Prueba: renders TextField with error state
+    test('renders TextField with error state', () => {
+      render(<TextField label="Username" error helperText="Username is required" />);
+      // Busca el TextField por su etiqueta y verifica que tenga estado de error
+      const textField = screen.getByLabelText(/username/i);
+      expect(textField).toBeInTheDocument();
+      expect(textField).toHaveAttribute('aria-invalid', 'true');
+      // Busca el texto de ayuda y verifica que esté presente en el documento
+      const helperText = screen.getByText(/username is required/i);
+      expect(helperText).toBeInTheDocument();
+    });
 });
