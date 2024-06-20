@@ -48,6 +48,7 @@ describe("Test SwitchMui", () => {
           <Switch
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)} // Actualiza el estado 'checked' con el evento onChange
+            //Entonces cuando ejecutamos un evento se activa la funcion setChecked y cambia el estado del switch
           />
         );
       };
@@ -56,5 +57,7 @@ describe("Test SwitchMui", () => {
       expect(switchElement).not.toBeChecked(); // Verifica que el Switch no está marcado inicialmente
       fireEvent.click(switchElement); // Simula un clic en el Switch
       expect(switchElement).toBeChecked(); // Verifica que el Switch está marcado después del clic
+      fireEvent.click(switchElement); // Simula un clic en el Switch
+      expect(switchElement).not.toBeChecked(); // Verifica que el Switch está marcado después del clic
     });
 });
