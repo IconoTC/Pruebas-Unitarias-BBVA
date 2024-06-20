@@ -19,7 +19,7 @@ const App = () => {
   // ];
   return (
     <div className="full-height flex-center">
-      <Button fullWidth style={{ backgroundColor: 'blue' }}>Styled Button</Button>
+      <Button disabled>Click me</Button>
       {/* <TextField label="Username" /> */}
       {/* <Select options={mockedOptions} value={'mocked-option-1'}/> */}
       {/* <Home/> */}
